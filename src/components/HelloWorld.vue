@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h3>{{ msg }}</h3>
+	<h3>{{ msg }}</h3>
     <h1>
 		{{ falg ? '是' : '不是' }}
 	</h1>
@@ -66,6 +66,7 @@ Date.prototype.Format = function (fmt) {
 <style scoped>
 h3 {
   margin: 40px 0 0;
+  border: -webkit-activelink;
 }
 ul {
   list-style-type: none;
