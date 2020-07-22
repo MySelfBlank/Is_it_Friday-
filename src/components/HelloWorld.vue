@@ -1,8 +1,12 @@
 <template>
   <div class="hello">
-	<div class="ui-elem" >
-		<span style="font-size: 2rem;">{{ msg }}</span>
-	</div>
+	<el-row>
+		<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+			<div class="ui-elem" >
+				<span style="font-size: 2rem;">{{ msg }}</span>
+			</div>
+		</el-col>
+	</el-row>
     <h1 style="font-family:Hiragino Sans GB; font-size: 80px;">
 		{{ falg ? '是' : '不是' }}
 	</h1>
@@ -74,6 +78,15 @@ Date.prototype.Format = function (fmt) {
 	height: 200px;
 	width: auto;
 	background: url(../assets/bg.png) no-repeat center;
+	
+	/* background-size: 100%,100%; */
+	
+}
+@media screen and (min-width:22.5rem) and (max-width:46.25rem) {
+	.ui-elem{
+		background-size: 100%,100%;
+	}
+	
 }
 .ui-elem span{
 	flex: auto;
