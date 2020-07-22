@@ -7,8 +7,9 @@
 			</div>
 		</el-col>
 	</el-row>
-    <h1 style="font-family:Hiragino Sans GB; font-size: 80px;">
-		{{ falg ? '是' : '不是' }}
+    <h1 style="font-family:Hiragino Sans GB; font-size: 80px;" >
+		<p v-if="falg==true" class="yes">是😍</p>
+		<p v-if="falg==false">不是😩</p>
 	</h1>
     <h3>{{Myweek}} {{time}}</h3>
   </div>
@@ -29,7 +30,7 @@ export default {
 		 Myweek : null
 	  }
   },
-  created:function(){
+  created(){
 	let date = new Date()
 	let week = date.getDay()
 	let weeks = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -92,4 +93,16 @@ Date.prototype.Format = function (fmt) {
 	flex: auto;
 	margin-top: 3.4375rem;
 }
+h1{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.yes{
+	border:solid 4px #2C3E50 ;
+	border-radius: 0.5rem;
+	width: 6%;
+	background-color: #ffe411;
+}
+
 </style>
