@@ -1,7 +1,9 @@
 <template>
   <div class="hello">
-	<h3>{{ msg }}</h3>
-    <h1>
+	<div class="ui-elem" >
+		<span style="font-size: 2rem;">{{ msg }}</span>
+	</div>
+    <h1 style="font-family:Hiragino Sans GB; font-size: 80px;">
 		{{ falg ? '是' : '不是' }}
 	</h1>
     <h3>{{Myweek}} {{time}}</h3>
@@ -64,19 +66,17 @@ Date.prototype.Format = function (fmt) {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-  border: -webkit-activelink;
+
+.ui-elem{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	height: 200px;
+	width: auto;
+	background: url(../assets/bg.png) no-repeat center;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.ui-elem span{
+	flex: auto;
+	margin-top: 3.4375rem;
 }
 </style>
