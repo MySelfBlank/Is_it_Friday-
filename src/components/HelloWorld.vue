@@ -11,7 +11,16 @@
 		<p v-if="falg==true" class="yes">是😍</p>
 		<p v-if="falg==false">不是😩</p>
 	</h1>
-    <h3>{{Myweek}} {{time}}</h3>
+	<transition name="el-fade-in-linear" :appear=show>
+		<h3>{{Myweek}} {{time}}</h3>
+	</transition>
+	<el-row>
+		<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+			<transition name="el-fade-in-linear" :appear=show>
+				<p v-show="show">世界的今天发生了什么? {{title}} </p>
+			</transition >
+		</el-col>
+	</el-row>
   </div>
 </template>
 
@@ -27,7 +36,26 @@ export default {
 	  return{
 		 falg: false,
 		 time: null ,
-		 Myweek : null
+		 Myweek : null,
+		 show : true,
+		 title : null 
+	  }
+  },
+  methods:{
+	  init() {
+		  let _this = this;
+		  const url = this.HOST + "/todayOnhistory/queryEvent.php"
+		  let times = new Date().Format("M/dd");
+		  console.log(times)
+		  this.myAjax.get(url,{
+		  		  params:{
+		  			  date: times,
+		  			  key: '894204409141d94229d1fd5afb565c9e'
+		  		  }
+		  }).then((response) => {
+		    console.log(response.data)
+		  		_this.title = response.data.result[Math.floor((Math.random()*50)+1)].title
+		  }).catch((e)=>{console.log(e)})
 	  }
   },
   created(){
@@ -42,7 +70,9 @@ export default {
       this.timer = setInterval(() => {
         _this.time = new Date().Format("yyyy.MM.dd hh:mm:ss"); // 修改数据date
       }, 1000)
+	  this.init()
     },
+	
 	beforeDestroy() {
 	    if (this.timer) {
 	      clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
@@ -87,6 +117,16 @@ Date.prototype.Format = function (fmt) {
 	.ui-elem{
 		background-size: 100%,100%;
 	}
+	h1{
+		margin-top: 2.5%;
+		margin-bottom: 2.5%;
+	}
+	/* .yes{
+		width:30% ;
+		margin-top: 2.5%;
+		margin-bottom: 2.5%;
+	} */
+	
 	
 }
 .ui-elem span{
@@ -104,5 +144,23 @@ h1{
 	width: 6%;
 	background-color: #ffe411;
 }
-
+.transition-box {
+    margin-bottom: 10px;
+    width: 200px;
+    height: 100px;
+    border-radius: 4px;
+    background-color: #409EFF;
+    text-align: center;
+    color: #fff;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+@media screen and (max-width: 64rem) {
+	.yes{
+		width:30% ;
+		margin-top: 2.5%;
+		margin-bottom: 2.5%;
+	}
+}
 </style>

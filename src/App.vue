@@ -2,7 +2,6 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <HelloWorld msg="今天是周五吗？"/>
-	
   </div>
 </template>
 
