@@ -17,10 +17,11 @@
 	<el-row>
 		<el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
 			<transition name="el-fade-in-linear" :appear=show>
-				<p v-show="show">世界的今天发生了什么? {{title}} </p>
+				<p v-show="show">世界的今天发生了什么? {{riqi}} {{title}} </p>
 			</transition >
 		</el-col>
 	</el-row>
+	<!-- <input type="button" @click="add()" value="+++" > -->
   </div>
 </template>
 
@@ -38,13 +39,15 @@ export default {
 		 time: null ,
 		 Myweek : null,
 		 show : true,
-		 title : null 
+		 title : null ,
+		 riqi :null
 	  }
   },
   methods:{
 	  init() {
 		  let _this = this;
 		  const url = this.HOST + "/todayOnhistory/queryEvent.php"
+		  const num = Math.floor((Math.random()*40)+1)
 		  let times = new Date().Format("M/dd");
 		  console.log(times)
 		  this.myAjax.get(url,{
@@ -54,9 +57,25 @@ export default {
 		  		  }
 		  }).then((response) => {
 		    console.log(response.data)
-		  		_this.title = response.data.result[Math.floor((Math.random()*50)+1)].title
+			console.log(num)
+				_this.riqi = response.data.result[num].date
+		  		_this.title = response.data.result[num].title
 		  }).catch((e)=>{console.log(e)})
-	  }
+		  // this.$jsonp(url+'?date='+times+'&'+'key=894204409141d94229d1fd5afb565c9e',null,function(err,data){
+			 //  if(err){
+				//   console.log(err.message)
+			 //  }
+			 //  else{
+				//   console.log(data)
+				//   _this.title=data.result[Math.floor((Math.random()*50)+1)].title
+				//   }
+		  // })
+	  },
+	  // add(){
+		 //   this.count += 10;
+		 //   this.$emit('update-data', this.count);
+		 //   console.log(count)
+	  // }
   },
   created(){
 	let date = new Date()
@@ -139,10 +158,10 @@ h1{
 	justify-content: center;
 }
 .yes{
-	border:solid 4px #2C3E50 ;
+	border:dashed  4px white ;
 	border-radius: 0.5rem;
-	width: 6%;
-	background-color: #ffe411;
+	width: 8%;
+	/* background-color: #ffe411; */
 }
 .transition-box {
     margin-bottom: 10px;

@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <HelloWorld msg="今天是周五吗？"/>
+    <HelloWorld msg='今天是周五吗？'  /><!-- @update-data='update' -->
+	
+<!-- 	<h4>我是爸爸！</h4>
+	<p>目前积分是： {{ data }}</p>
+	<hr> -->
+	      
   </div>
 </template>
 
@@ -12,8 +17,19 @@ export default {
   name: 'app',
   components: {
     HelloWorld
-  }
+  },
+  data(){
+	  return{
+		  data:0
+	  }
+  },
+// methods:{
+// 	update(num){
+// 		this.data=num
+// 	}
 }
+  
+
 </script>
 
 <style>
